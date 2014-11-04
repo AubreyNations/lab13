@@ -15,8 +15,9 @@ from Tkinter import *
 root = Tk()
 
 drawpad = Canvas(root, width=800,height=600, background='#C2FCFF')
-player = drawpad.create_oval(390,580,410,600, fill="#CA85FF")
-
+player = drawpad.create_oval(390,580,410,600, fill="#CA85FF", outline="#CA85FF")
+enemy1 = drawpad.create_rectangle(0,100,125,125, fill="#FF9D1C", outline="#FF9D1C")
+direction = 1
 # Create your "enemies" here, before the class
 
 
@@ -58,22 +59,36 @@ class MyApp:
 	def upClicked(self, event):   
 	   global oval
 	   global player
-	   drawpad.move(player,0,-20)
+	   drawpad.move(player,0,-30)
 
         def leftClicked(self, event):   
 	   global oval
 	   global player
-	   drawpad.move(player,-20,0)
+	   drawpad.move(player,-30,0)
 	   
 	def rightClicked(self, event):   
 	   global oval
 	   global player
-	   drawpad.move(player,20,0)		
+	   drawpad.move(player,30,0)		
 		
 	def downClicked(self, event):   
 	   global oval
 	   global player
-	   drawpad.move(player,0,20)
-		
+	   drawpad.move(player,0,30)
+	   # Create our animation function
+def animate():
+    global direction
+    # Get the x and y co-ordinates of the circle
+    x1, y1, x2, y2 = drawpad.coords(enemy1)
+    if x2 > drawpad.winfo_width():
+        direction = - 810
+    elif x1 < -5:
+        direction = 5
+    #Move our oval object by the value of direction
+    drawpad.move(enemy1,direction,0)
+    # Wait for 1 millisecond, then recursively call our animate function
+    drawpad.after(1, animate)
+
+animate()		
 app = MyApp(root)
 root.mainloop()
