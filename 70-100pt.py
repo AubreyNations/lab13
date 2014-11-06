@@ -15,16 +15,21 @@ from Tkinter import *
 root = Tk()
 
 drawpad = Canvas(root, width=800,height=600, background='#C2FCFF')
-player = drawpad.create_oval(390,580,410,600, fill="#CA85FF", outline="#CA85FF")
+player = drawpad.create_oval(390,565,410,585, fill="#CA85FF", outline="#CA85FF")
 enemy1 = drawpad.create_rectangle(random.randint(10,250),100,125,125, fill="#FF9D1C", outline="#FF9D1C")
 enemy2 = drawpad.create_rectangle(random.randint(350,590),250,475,275, fill="#FF9D1C", outline="#FF9D1C")
 enemy3 = drawpad.create_rectangle(random.randint(10,250),400,125,425, fill="#FF9D1C", outline="#FF9D1C")
-direction = 1
+leftborder = drawpad.create_rectangle(0,600,10,0, fill="#FF9D1C", outline="#FF9D1C")
+rightborder = drawpad.create_rectangle(790,600,800,0, fill="#FF9D1C", outline="#FF9D1C")
+bottomborder = drawpad.create_rectangle(0,600,800,590, fill="#FF9D1C", outline="#FF9D1C")
+direction1 = 1
+direction2 = 1
+direction3 = 1
 # Create your "enemies" here, before the class
 
 
 class MyApp:
-	def __init__(self, parent):
+        def __init__(self, parent):
        	    global drawpad
        	    self.myParent = parent  
        	    self.myContainer1 = Frame(parent)
@@ -78,44 +83,41 @@ class MyApp:
 	   global player
 	   drawpad.move(player,0,30)
 	   # Create our animation function
-	   
-#Staying stationary. HELP!
+	   	   
 def animate1(): 
-    global direction
+    global direction1
     global enemy1
     # Get the x and y co-ordinates of the circle
     x1, y1, x2, y2 = drawpad.coords(enemy1)
     if x2 > drawpad.winfo_width():
-        direction = - 825
+        direction1 = - 825
     elif x1 < -5:
-        direction = 5
+        direction1 = 7
     #Move our oval object by the value of direction
-    drawpad.move(enemy1,direction,0)
-    drawpad.after(1, animate1)
-
-#Staying stationary. HELP!    
+    drawpad.move(enemy1,direction1,0)
+    drawpad.after(10, animate1)
+               
 def animate2():
-    global direction 
+    global direction2 
     global enemy2 
     x1, y1, x2, y2 = drawpad.coords(enemy2)
     if x2 > drawpad.winfo_width():
-        direction = - 825
+        direction2 = - 10
     elif x1 < -5:
-        direction = 5
-    drawpad.move(enemy2,direction,0)
-    drawpad.after(1, animate2)
+        direction2 = 10
+    drawpad.move(enemy2,direction2,0)
+    drawpad.after(10, animate2)
 
-#This is the only moving enemy at the moment.    
 def animate3():
-    global direction 
+    global direction3 
     global enemy3  
     x1, y1, x2, y2 = drawpad.coords(enemy3)
     if x2 > drawpad.winfo_width():
-        direction = - 825
+        direction3 = - 825
     elif x1 < -5:
-        direction = 5
-    drawpad.move(enemy3,direction,0)
-    drawpad.after(1, animate3)
+        direction3 = 7
+    drawpad.move(enemy3,direction3,0)
+    drawpad.after(10, animate3)
 
 animate1()
 animate2()
