@@ -17,7 +17,7 @@ root = Tk()
 drawpad = Canvas(root, width=800,height=600, background='#C2FCFF')
 player = drawpad.create_oval(390,580,410,600, fill="#CA85FF", outline="#CA85FF")
 enemy1 = drawpad.create_rectangle(random.randint(10,250),100,125,125, fill="#FF9D1C", outline="#FF9D1C")
-enemy2 = drawpad.create_rectangle(random.randint(10,250),250,125,275, fill="#FF9D1C", outline="#FF9D1C")
+enemy2 = drawpad.create_rectangle(random.randint(350,590),250,475,275, fill="#FF9D1C", outline="#FF9D1C")
 enemy3 = drawpad.create_rectangle(random.randint(10,250),400,125,425, fill="#FF9D1C", outline="#FF9D1C")
 direction = 1
 # Create your "enemies" here, before the class
