@@ -78,8 +78,11 @@ class MyApp:
 	   global player
 	   drawpad.move(player,0,30)
 	   # Create our animation function
-def animate():
+	   
+#Staying stationary. HELP!
+def animate1(): 
     global direction
+    global enemy1
     # Get the x and y co-ordinates of the circle
     x1, y1, x2, y2 = drawpad.coords(enemy1)
     if x2 > drawpad.winfo_width():
@@ -88,32 +91,34 @@ def animate():
         direction = 5
     #Move our oval object by the value of direction
     drawpad.move(enemy1,direction,0)
-    drawpad.after(1, animate)
-    
-def animate():
-    global direction    
+    drawpad.after(1, animate1)
+
+#Staying stationary. HELP!    
+def animate2():
+    global direction 
+    global enemy2 
     x1, y1, x2, y2 = drawpad.coords(enemy2)
     if x2 > drawpad.winfo_width():
         direction = - 825
     elif x1 < -5:
         direction = 5
-    #Move our oval object by the value of direction
     drawpad.move(enemy2,direction,0)
-    drawpad.after(1, animate)
-    
-def animate():
-    global direction    
+    drawpad.after(1, animate2)
+
+#This is the only moving enemy at the moment.    
+def animate3():
+    global direction 
+    global enemy3  
     x1, y1, x2, y2 = drawpad.coords(enemy3)
     if x2 > drawpad.winfo_width():
         direction = - 825
     elif x1 < -5:
         direction = 5
-    #Move our oval object by the value of direction
     drawpad.move(enemy3,direction,0)
-    
-    # Wait for 1 millisecond, then recursively call our animate function
-    drawpad.after(1, animate)
+    drawpad.after(1, animate3)
 
-animate()		
+animate1()
+animate2()
+animate3()		
 app = MyApp(root)
 root.mainloop()
