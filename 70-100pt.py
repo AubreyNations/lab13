@@ -66,22 +66,30 @@ class MyApp:
 	def upClicked(self, event):   
 	   global oval
 	   global player
-	   drawpad.move(player,0,-30)
+           x1,y1,x2,y2 = drawpad.coords(player)
+	   if y1 > 0:
+	       drawpad.move(player,0,-20)
 
         def leftClicked(self, event):   
 	   global oval
 	   global player
-	   drawpad.move(player,-30,0)
+           x1,y1,x2,y2 = drawpad.coords(player)
+           if x1 > 5:
+    	       drawpad.move(player,-30,0)
 	   
 	def rightClicked(self, event):   
 	   global oval
 	   global player
-	   drawpad.move(player,30,0)		
+           x1,y1,x2,y2 = drawpad.coords(player)
+	   if x2 < 800:
+	       drawpad.move(player,30,0)		
 		
 	def downClicked(self, event):   
 	   global oval
 	   global player
-	   drawpad.move(player,0,30)
+           x1,y1,x2,y2 = drawpad.coords(player)
+	   if y2 < 590:
+	       drawpad.move(player,0,30)
 	   # Create our animation function
 	   	   
 def animate1(): 
